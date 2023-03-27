@@ -133,18 +133,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bild_new.h" />
-    <ClInclude Include="Blding.h" />
-    <ClInclude Include="building.h" />
+    <ClInclude Include="Bilding.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="Manager.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="MSG.h" />
+    <ClInclude Include="Sawmill.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bild_new.cpp" />
-    <ClCompile Include="Blding.cpp" />
+    <ClCompile Include="Bilding.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MSG.cpp" />
+    <ClCompile Include="Sawmill.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

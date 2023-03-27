@@ -6,11 +6,11 @@ enum class MsgType { Create };
 struct MSG
 {
 	MsgType type;
-	House* sender;
+	Bilding* sender;
 	union
 	{
 		struct {
-			House* new_object;
+			Bilding* new_object;
 		} create;
 	};
 

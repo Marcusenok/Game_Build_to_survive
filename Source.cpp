@@ -1,6 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include"House.h"
-#include"MSG.h"
 #include"Bild_new.h"
 #include "Manager.h"
 #include <iostream>
@@ -94,42 +92,45 @@ int main()
 	Sprite s_press_to_buld;//создаём спрайт для карты
 	s_press_to_buld.setTexture(press_to_buld);//заливаем текстуру спрайтом
 
-	Texture house1;//текстура карты
-	house1.loadFromFile("image/house/house_lvl1.png");//заряжаем текстуру картинкой
-	Sprite s_house1;//создаём спрайт для карты
-	s_house1.setTexture(house1);//заливаем текстуру спрайтом
-
 
 	Manager* MGR = Manager::GetInstance();
+	Map* MAP = Map::GetInstance();
 
 	MSG* msg = new MSG;
 
-	Clock clock;
-	clock.restart();
-
 	string line;
-	vector <string> map_vector;
+	vector <string> _map_vector;
 	ifstream file("map.txt");
 
 	while (getline(file, line)) {
-		map_vector.push_back(line);
+		_map_vector.push_back(line);
 	}
 
-	for (int i = 0; i < map_vector.size(); i++)
+	for (int i = 0; i < _map_vector.size(); i++)
 	{
-		for (int j = 0; j < map_vector[0].length(); j++)
+		for (int j = 0; j < _map_vector[0].length(); j++)
 		{
-			if (map_vector[i][j] == '1') 
+			if (_map_vector[i][j] == '1')
 			{
 				msg = new MSG;
 				msg->type = MsgType::Create;
-				House* a = new House(i*32, j*32, 3, 4, &house1);
+				House* a = new House({ j * 32, i * 32 }, 3, 4, 5);
+				msg->create.new_object = a;
+				MGR->SendMsg(msg);
+			}
+			if (_map_vector[i][j] == 's')
+			{
+				msg = new MSG;
+				msg->type = MsgType::Create;
+				Sawmill* a = new Sawmill({ j * 32, i * 32 }, 3, 4);
 				msg->create.new_object = a;
 				MGR->SendMsg(msg);
 			}
 		}
 	}
 
+	Clock clock;
+	clock.restart();
 
 	while (window.isOpen())
 	{
@@ -137,43 +138,16 @@ int main()
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				window.close();
-			if (event.type == sf::Event::MouseButtonPressed)
 			{
-				if (event.mouseButton.button == sf::Mouse::Left)
-				{
-					if (event.mouseButton.x <= 64 && event.mouseButton.y <= 64) 
-					{
-						buld_new(window, MGR, map_vector);
-					}
-				}
+				window.close();
 			}
 		}
 
 		window.clear();
 
-		/////////////////////////////Рисуем карту/////////////////////
-		for (int i = 0; i < map_vector.size(); i++)
-		{
-			for (int j = 0; j < map_vector[0].length(); j++)
-			{
-				if (map_vector[i][j] == '0')
-				{
-					s_map.setTextureRect(IntRect(64, 0, 32, 32));
-					s_map.setPosition(j * 32, i * 32);
-					window.draw(s_map);
-				}
-				if (map_vector[i][j] == 'l')
-				{
-					s_map.setTextureRect(IntRect(96, 0, 32, 32));
-					s_map.setPosition(j * 32, i * 32);
-					window.draw(s_map);
-				}
-			}
-		}
-
 		MGR->Update(clock.restart().asSeconds());
 
+		MAP->DrawMap(window);
 		MGR->DrawObjects(window);
 		window.draw(s_press_to_buld);
 		window.display();

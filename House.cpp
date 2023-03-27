@@ -1,25 +1,7 @@
 #include "House.h"
 
-sf::Texture* House::LoadTexture(const char* filename, const sf::IntRect& src_box)
+House::House(sf::Vector2<int> _position, int _level, int _cost, int _capacity_people) :
+    Bilding(_position, _level, _cost, LoadTexture("image\\house\\house_lvl1.png", { 0, 0, 96, 96 }))
 {
-    Texture* tex = new Texture();
-    if (tex->loadFromFile(filename, src_box))
-        return tex;
-    delete tex;
-    return nullptr;
-}
-
-House::House(int _x, int _y, int _level, int _cost, sf::Texture* _texture)
-{
-    x = _x;
-    y = _y;
-    level = _level;
-    texture = LoadTexture("image\\house\\house_lvl1.png", { 0, 0, 96, 96 });
-    sprite.setTexture(*texture);
-}
-
-void House::Draw(sf::RenderWindow& window)
-{
-	sprite.setPosition(y, x);
-	window.draw(sprite);
+    capacity_people = _capacity_people;
 }

@@ -1,27 +1,12 @@
-#ifndef AAA_HOUSE
-#define AAA_HOUSE
+#include"Bilding.h"
 
-#include <iostream>
-#include <SFML/Graphics.hpp>
-using namespace sf;
-using namespace std;
 
-class House
+class House : public Bilding
 {
 protected:
-	int level;
-	int cost;
-
-	sf::Texture* texture;
-	int x, y;
-	sf::Sprite sprite;
-
-	sf::Texture* LoadTexture(const char* filename, const sf::IntRect& src_box);
+	int capacity_people;
 
 public:
-	House(int x, int y, int level, int cost, sf::Texture* texture);
-	void Draw(sf::RenderWindow& window);
+	House(sf::Vector2<int> _position, int _level, int _cost, int _capacity_people);
 };
-
-#endif
 

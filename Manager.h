@@ -2,7 +2,8 @@
 #define AAA_MANAGER
 
 #include"MSG.h"
-#include"House.h"
+#include"Bilding.h"
+#include"Map.h"
 #include<list>
 
 class Manager
@@ -10,7 +11,7 @@ class Manager
 private:
 	static Manager* instance;
 
-	std::list<House*> objs;
+	std::list<Bilding*> objs;
 	std::list<MSG*> msgs;
 	Manager();
 	Manager(const Manager&);
