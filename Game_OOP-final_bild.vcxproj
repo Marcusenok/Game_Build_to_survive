@@ -132,7 +132,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bild_new.h" />
     <ClInclude Include="Bilding.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="Manager.h" />
@@ -141,7 +140,6 @@
     <ClInclude Include="Sawmill.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bild_new.cpp" />
     <ClCompile Include="Bilding.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="Manager.cpp" />

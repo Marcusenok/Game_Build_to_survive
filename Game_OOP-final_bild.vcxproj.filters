@@ -18,9 +18,6 @@
     <ClInclude Include="House.h">
       <Filter>Bildings</Filter>
     </ClInclude>
-    <ClInclude Include="Bild_new.h">
-      <Filter>Basic Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Manager.h">
       <Filter>Basic Classes</Filter>
     </ClInclude>
@@ -35,9 +32,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bild_new.cpp">
-      <Filter>Basic Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Manager.cpp">
       <Filter>Basic Classes</Filter>
     </ClCompile>

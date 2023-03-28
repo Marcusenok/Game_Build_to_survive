@@ -1,9 +1,5 @@
-#ifndef AAA_MANAGER
-#define AAA_MANAGER
-
 #include"MSG.h"
 #include"Bilding.h"
-#include"Map.h"
 #include<list>
 
 class Manager
@@ -25,6 +21,3 @@ public:
 	void SendMsg(MSG* m);
 	void DrawObjects(sf::RenderWindow& win);
 };
-
-#endif
-

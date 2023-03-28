@@ -1,5 +1,5 @@
-#pragma once
 #include"House.h"
+#include"Sawmill.h"
 
 enum class MsgType { Create };
 
