@@ -197,7 +197,6 @@ void Map::Create_new_bilding(sf::RenderWindow& window)
 	}
 }
 
-
 int Map::Chose_bild(sf::RenderWindow& window)
 {
 	int chose_number = 0;
@@ -256,5 +255,3 @@ bool Map::Can_buld_sawmill(int x, int y)
 	}
 	return can_buld_sawmill;
 }
-
-
