@@ -84,10 +84,6 @@ void Map::DrawMap(sf::RenderWindow& window)
 void Map::Create_new_bilding(sf::RenderWindow& window)
 {
 	int number_buld = this->Chose_bild(window);
-	Texture press_close;//текстура карты
-	press_close.loadFromFile("image/interface/close.png");//заряжаем текстуру картинкой
-	Sprite s_press_close;//создаём спрайт для карты
-	s_press_close.setTexture(press_close);//заливаем текстуру спрайтом
 
 	Texture map;//текстура карты
 	map.loadFromFile("image/map.png");//заряжаем текстуру картинкой
@@ -111,6 +107,7 @@ void Map::Create_new_bilding(sf::RenderWindow& window)
 			}
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
+				if (event.mouseButton.button == sf::Mouse::Right) create_new_bild = false;
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
 					if (can_buld)
@@ -191,8 +188,6 @@ void Map::Create_new_bilding(sf::RenderWindow& window)
 				}
 			}
 		}
-
-		window.draw(s_press_close);
 		window.display();
 	}
 }

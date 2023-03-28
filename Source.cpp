@@ -4,6 +4,7 @@
 int main()
 {
 	RenderWindow window(sf::VideoMode(1216, 928), "BUILD TO SURVIVE");
+	window.setPosition(sf::Vector2i(300, 50));
 
 	Manager* MGR = Manager::GetInstance();
 	Map* MAP = Map::GetInstance();
@@ -19,6 +20,10 @@ int main()
 			if (event.type == sf::Event::Closed)
 			{
 				window.close();
+			}
+			if (event.type == sf::Event::Resized)
+			{
+				window.setSize(sf::Vector2u(1216, 928));
 			}
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
