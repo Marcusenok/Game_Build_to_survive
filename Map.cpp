@@ -8,6 +8,7 @@ Map* Map::GetInstance()
 	{
 		instance = new Map();
 		instance->MGR = Manager::GetInstance();
+		instance->RES_MGR = Resource_manager::GetInstance();
 		string line;
 		vector <string> _map_vector;
 		ifstream file("map.txt");
@@ -48,16 +49,20 @@ Map* Map::GetInstance()
 
 void Map::DrawMap(sf::RenderWindow& window)
 {
-	Texture map;//текстура карты
-	map.loadFromFile("image/map.png");//заряжаем текстуру картинкой
-	Sprite s_map;//создаём спрайт для карты
-	s_map.setTexture(map);//заливаем текстуру спрайтом
+	Texture map = *RES_MGR->LoadTexture("image/map.png", {0,0,512 , 32});
+	Sprite s_map;
+	s_map.setTexture(map);
 
-	Texture press_to_buld;//текстура карты
-	press_to_buld.loadFromFile("image/interface/press_to_buld.png");//заряжаем текстуру картинкой
-	Sprite s_press_to_buld;//создаём спрайт для карты
-	s_press_to_buld.setTexture(press_to_buld);//заливаем текстуру спрайтом
-	s_press_to_buld.setPosition(1152, 0);
+	Texture* press_to_buld = RES_MGR->LoadTexture("image/interface/press_to_buld.png", {0,0,64, 64});
+	Sprite s_press_to_buld = *RES_MGR->GetSprite(press_to_buld, 1152, 0);
+
+	Texture* resourse_info = RES_MGR->LoadTexture("image/interface/resourse_info.png", {0, 0, 600, 55});
+	Sprite s_resourse_info = *RES_MGR->GetSprite(resourse_info, 306, 0);
+
+	Text info_wood = RES_MGR->setString(387, 5, to_string(RES_MGR->wood));
+	Text raw_food = RES_MGR->setString(519, 5, to_string(RES_MGR->raw_food));
+	Text fresh_food = RES_MGR->setString(668, 5, to_string(RES_MGR->fresh_food));
+	Text people = RES_MGR->setString(799, 5, to_string(RES_MGR->people));
 
 	for (int i = 0; i < map_vector.size(); i++)
 	{
@@ -78,7 +83,12 @@ void Map::DrawMap(sf::RenderWindow& window)
 		}
 	}
 
+	window.draw(s_resourse_info);
 	window.draw(s_press_to_buld);
+	window.draw(info_wood);
+	window.draw(raw_food);
+	window.draw(fresh_food);
+	window.draw(people);
 }
 
 void Map::Create_new_bilding(sf::RenderWindow& window)

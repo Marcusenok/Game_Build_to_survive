@@ -30,6 +30,9 @@
     <ClInclude Include="Map.h">
       <Filter>Basic Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Resource_manager.h">
+      <Filter>Basic Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Manager.cpp">
@@ -51,6 +54,9 @@
       <Filter>Bildings</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
+      <Filter>Basic Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource_manager.cpp">
       <Filter>Basic Classes</Filter>
     </ClCompile>
   </ItemGroup>

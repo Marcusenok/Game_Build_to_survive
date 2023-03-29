@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include"Manager.h"
+#include"Resource_manager.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -7,12 +8,14 @@
 using namespace sf;
 using namespace std;
 
+
 class Map
 {
 private:
 	static Map* instance;
 	std::vector<string> map_vector;
 	Manager* MGR = nullptr;
+	Resource_manager* RES_MGR = nullptr;
 
 public:
 	static Map* GetInstance();
