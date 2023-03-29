@@ -13,9 +13,9 @@ Resource_manager* Resource_manager::GetInstance()
 	return instance;
 }
 
-Text Resource_manager::setString(int x, int y, string text)
+sf::Text Resource_manager::setString(int x, int y, string text)
 {
-	FONT.loadFromFile("ArefRuqaaInk-Regular.ttf");
+	FONT.loadFromFile("ofont.ru_Arial Cyr.ttf");
 	Text _text(text, FONT, 25);
 	_text.setFillColor(Color::White);
 	_text.setPosition(x, y);
@@ -37,5 +37,4 @@ sf::Sprite* Resource_manager::GetSprite(sf::Texture* texture, int x, int y)
 	sprite->setTexture(*texture);
 	sprite->setPosition(x, y);
 	return sprite;
-	delete sprite;
 }

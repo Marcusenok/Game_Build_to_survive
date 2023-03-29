@@ -18,7 +18,7 @@ public:
 	int people = 100;
 
 	static Resource_manager* GetInstance();
-	Text setString(int x, int y, string text);
+	sf::Text setString(int x, int y, string text);
 	sf::Texture* LoadTexture(const char* filename, const sf::IntRect& src_box);
 	sf::Sprite* GetSprite(sf::Texture* texture, int x, int y);
 };

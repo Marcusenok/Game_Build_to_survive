@@ -4,7 +4,7 @@
 int main()
 {
 	RenderWindow window(sf::VideoMode(1216, 928), "BUILD TO SURVIVE");
-	window.setPosition(sf::Vector2i(300, 100));
+	window.setPosition(sf::Vector2i(300, 50));
 
 	Manager* MGR = Manager::GetInstance();
 	Map* MAP = Map::GetInstance();
@@ -12,16 +12,14 @@ int main()
 
 	Clock clock;
 	clock.restart();
-	float timer = 22;
-	int days = 0;
-	int hour = 0;
+	float timer = 24;
+	int days = 1;
 
 	while (window.isOpen())
 	{
 		timer += clock.restart().asSeconds();
-		hour = int(timer) % 24;
 		if (int(timer) / 24 > days) days += 1;
-		cout << days << "--" << hour << endl;
+		cout << days << "--" << int(timer) % 24 << endl;
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -41,7 +39,7 @@ int main()
 					cout << sf::Mouse::getPosition(window).y << endl;
 					if (event.mouseButton.x >= 1152 && event.mouseButton.y <= 64)
 					{
-						MAP->Create_new_bilding(window);
+						MAP->Create_new_bilding(window, days, timer);
 					}
 				}
 			}
@@ -51,7 +49,7 @@ int main()
 
 		MGR->Update(clock.restart().asSeconds());
 
-		MAP->DrawMap(window);
+		MAP->DrawMap(window, days, timer);
 		MGR->DrawObjects(window);
 		window.display();
 	}

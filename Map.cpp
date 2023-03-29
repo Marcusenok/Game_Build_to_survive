@@ -47,18 +47,21 @@ Map* Map::GetInstance()
 	return instance;
 }
 
-void Map::DrawMap(sf::RenderWindow& window)
+void Map::DrawMap(sf::RenderWindow& window, int days, float timer)
 {
-	Texture map = *RES_MGR->LoadTexture("image/map.png", {0,0,512 , 32});
-	Sprite s_map;
-	s_map.setTexture(map);
+	Texture* map = RES_MGR->LoadTexture("image/map.png", { 0,0,512 , 32 });
+	Sprite s_map = *RES_MGR->GetSprite(map, 0, 0);;
 
-	Texture* press_to_buld = RES_MGR->LoadTexture("image/interface/press_to_buld.png", {0,0,64, 64});
-	Sprite s_press_to_buld = *RES_MGR->GetSprite(press_to_buld, 1152, 0);
+	Texture* press_to_buld = RES_MGR->LoadTexture("image/interface/press_to_buld.png", { 0,0,64, 64 });
+	Sprite* s_press_to_buld = RES_MGR->GetSprite(press_to_buld, 1152, 0);
 
-	Texture* resourse_info = RES_MGR->LoadTexture("image/interface/resourse_info.png", {0, 0, 600, 55});
-	Sprite s_resourse_info = *RES_MGR->GetSprite(resourse_info, 306, 0);
+	Texture* resourse_info = RES_MGR->LoadTexture("image/interface/resourse_info.png", { 0, 0, 600, 55 });
+	Sprite* s_resourse_info = RES_MGR->GetSprite(resourse_info, 306, 0);
 
+	Text time_status_days = RES_MGR->setString(0, 5, "");
+	time_status_days.setString(L"Δενό "+to_string(days));
+	Text time_status_hours = RES_MGR->setString(0, 30, "");
+	time_status_hours.setString(L"Βπεμÿ "+to_string(int(timer) % 24));
 	Text info_wood = RES_MGR->setString(387, 5, to_string(RES_MGR->wood));
 	Text raw_food = RES_MGR->setString(519, 5, to_string(RES_MGR->raw_food));
 	Text fresh_food = RES_MGR->setString(668, 5, to_string(RES_MGR->fresh_food));
@@ -83,15 +86,21 @@ void Map::DrawMap(sf::RenderWindow& window)
 		}
 	}
 
-	window.draw(s_resourse_info);
-	window.draw(s_press_to_buld);
+	window.draw(*s_resourse_info);
+	window.draw(*s_press_to_buld);
 	window.draw(info_wood);
 	window.draw(raw_food);
 	window.draw(fresh_food);
 	window.draw(people);
+	window.draw(time_status_hours);
+	window.draw(time_status_days);
+
+	delete map;
+	delete press_to_buld;
+	delete resourse_info;
 }
 
-void Map::Create_new_bilding(sf::RenderWindow& window)
+void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 {
 	int number_buld = this->Chose_bild(window);
 
@@ -156,7 +165,7 @@ void Map::Create_new_bilding(sf::RenderWindow& window)
 		}
 
 		window.clear();
-		this->DrawMap(window);
+		this->DrawMap(window, days, timer);
 		MGR->DrawObjects(window);
 
 		can_buld = true;
