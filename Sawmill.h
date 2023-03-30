@@ -7,6 +7,6 @@ protected:
 	int efficiency = 5;
 
 public:
-	Sawmill(sf::Vector2<int> _position, int _level, int _cost);
+	Sawmill(sf::Vector2<int> _position, int _level);
 };
 

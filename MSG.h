@@ -1,6 +1,7 @@
 #include"House.h"
 #include"Sawmill.h"
 #include"HuntersHouse.h"
+#include"Kitchen.h"
 
 enum class MsgType { Create };
 

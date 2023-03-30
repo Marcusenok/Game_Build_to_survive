@@ -7,6 +7,6 @@ protected:
 	int capacity_people;
 
 public:
-	House(sf::Vector2<int> _position, int _level, int _cost, int _capacity_people);
+	House(sf::Vector2<int> _position, int _level, int _capacity_people);
 };
 

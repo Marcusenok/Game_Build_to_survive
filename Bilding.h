@@ -11,7 +11,6 @@ class Bilding
 {
 protected:
 	int level;
-	int cost;
 
 	sf::Texture* texture;
 	sf::Vector2<int> position;
@@ -20,7 +19,7 @@ protected:
 	sf::Texture* LoadTexture(const char* filename, const sf::IntRect& src_box);
 
 public:
-	Bilding(sf::Vector2<int> position, int level, int cost, sf::Texture* texture);
+	Bilding(sf::Vector2<int> position, int level, sf::Texture* texture);
 	void Draw(sf::RenderWindow& window);
 };
 

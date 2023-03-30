@@ -6,6 +6,6 @@ protected:
 	int efficiency = 5;
 
 public:
-	HuntersHouse(sf::Vector2<int> _position, int _level, int _cost);
+	HuntersHouse(sf::Vector2<int> _position, int _level);
 };
 

@@ -9,7 +9,7 @@ sf::Texture* Bilding::LoadTexture(const char* filename, const sf::IntRect& src_b
     return nullptr;
 }
 
-Bilding::Bilding(sf::Vector2<int> _position, int _level, int _cost, sf::Texture* _texture)
+Bilding::Bilding(sf::Vector2<int> _position, int _level, sf::Texture* _texture)
 {   
     position = _position;
     level = _level;

@@ -29,7 +29,7 @@ Map* Map::GetInstance()
 				{
 					msg = new MSG;
 					msg->type = MsgType::Create;
-					House* a = new House({ j * 32, i * 32 }, 3, 4, 5);
+					House* a = new House({ j * 32, i * 32 }, 1, 5);
 					msg->create.new_object = a;
 					instance->MGR->SendMsg(msg);
 				}
@@ -37,7 +37,23 @@ Map* Map::GetInstance()
 				{
 					msg = new MSG;
 					msg->type = MsgType::Create;
-					Sawmill* a = new Sawmill({ j * 32, i * 32 }, 3, 4);
+					Sawmill* a = new Sawmill({ j * 32, i * 32 }, 1);
+					msg->create.new_object = a;
+					instance->MGR->SendMsg(msg);
+				}
+				if (_map_vector[i][j] == '3')
+				{
+					MSG* msg = new MSG;
+					msg->type = MsgType::Create;
+					HuntersHouse* a = new HuntersHouse({ j * 32, i * 32 }, 1);
+					msg->create.new_object = a;
+					instance->MGR->SendMsg(msg);
+				}
+				if (_map_vector[i][j] == '4')
+				{
+					MSG* msg = new MSG;
+					msg->type = MsgType::Create;
+					Kitchen* a = new Kitchen({ j * 32, i * 32 }, 1);
 					msg->create.new_object = a;
 					instance->MGR->SendMsg(msg);
 				}
@@ -139,7 +155,7 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 							{
 								MSG* msg = new MSG;
 								msg->type = MsgType::Create;
-								House* a = new House({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1, 4, 5);
+								House* a = new House({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1, 5);
 								msg->create.new_object = a;
 								instance->MGR->SendMsg(msg);
 								create_new_bild = false;
@@ -151,7 +167,7 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 								{
 									MSG* msg = new MSG;
 									msg->type = MsgType::Create;
-									Sawmill* a = new Sawmill({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1, 4);
+									Sawmill* a = new Sawmill({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1);
 									msg->create.new_object = a;
 									instance->MGR->SendMsg(msg);
 									create_new_bild = false;
@@ -164,12 +180,21 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 								{
 									MSG* msg = new MSG;
 									msg->type = MsgType::Create;
-									HuntersHouse* a = new HuntersHouse({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1, 4);
+									HuntersHouse* a = new HuntersHouse({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1);
 									msg->create.new_object = a;
 									instance->MGR->SendMsg(msg);
 									create_new_bild = false;
 								}
 								break;
+							}
+							case 4:
+							{
+								MSG* msg = new MSG;
+								msg->type = MsgType::Create;
+								Kitchen* a = new Kitchen({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1);
+								msg->create.new_object = a;
+								instance->MGR->SendMsg(msg);
+								create_new_bild = false;
 							}
 							default:
 								break;
@@ -182,16 +207,19 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 		window.clear();
 		this->DrawMap(window, days, timer);
 		MGR->DrawObjects(window);
-
+		int idex_for_bilding = 0;
+		if (number_buld == 4) idex_for_bilding += 1;
 		can_buld = true;
-		for (int i = 1; i < 4; i++)
+		for (int i = 1; i < 4 + idex_for_bilding; i++)
 		{
-			for (int j = 1; j < 4; j++)
+			for (int j = 1; j < 4 + idex_for_bilding; j++)
 			{
 				if (coord_x == -2 || coord_y == -2 || coord_x == map_vector[0].length() - 3 || coord_y == map_vector.size() - 3
 					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '-'
 					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '1'
 					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '2'
+					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '3'
+					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '4'
 					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == 'w')
 				{
 					can_buld = false;
@@ -260,6 +288,9 @@ int Map::Chose_bild(sf::RenderWindow& window)
 					if (event.mouseButton.x >= 414 && event.mouseButton.y >= 369
 						&& event.mouseButton.x <= 806 && event.mouseButton.y <= 414)
 						chose_number = 3;
+					if (event.mouseButton.x >= 416 && event.mouseButton.y >= 452
+						&& event.mouseButton.x <= 807 && event.mouseButton.y <= 496)
+						chose_number = 4;
 				}
 			}
 		}
