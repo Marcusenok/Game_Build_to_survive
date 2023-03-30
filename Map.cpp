@@ -120,8 +120,6 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 {
 	int number_buld = this->Chose_bild(window);
 
-	cout << number_buld;
-
 	Texture map;//текстура карты
 	map.loadFromFile("image/map.png");//заряжаем текстуру картинкой
 	Sprite s_map;//создаём спрайт для карты
@@ -189,12 +187,24 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 							}
 							case 4:
 							{
+								cout << number_buld;
 								MSG* msg = new MSG;
 								msg->type = MsgType::Create;
 								Kitchen* a = new Kitchen({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1);
 								msg->create.new_object = a;
 								instance->MGR->SendMsg(msg);
 								create_new_bild = false;
+								break;
+							}
+							case 5:
+							{
+								MSG* msg = new MSG;
+								msg->type = MsgType::Create;
+								Hospital* a = new Hospital({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1);
+								msg->create.new_object = a;
+								instance->MGR->SendMsg(msg);
+								create_new_bild = false;
+								break;
 							}
 							default:
 								break;
@@ -207,19 +217,22 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 		window.clear();
 		this->DrawMap(window, days, timer);
 		MGR->DrawObjects(window);
-		int idex_for_bilding = 0;
-		if (number_buld == 4) idex_for_bilding += 1;
+		int idex_for_bilding_x = 0, idex_for_bilding_y = 0;
+		if (number_buld == 4) { idex_for_bilding_x += 1; idex_for_bilding_y += 1; };
+		if (number_buld == 5) { idex_for_bilding_x += 2; idex_for_bilding_y += 1; };
 		can_buld = true;
-		for (int i = 1; i < 4 + idex_for_bilding; i++)
+		for (int i = 1; i < 4 + idex_for_bilding_x; i++)
 		{
-			for (int j = 1; j < 4 + idex_for_bilding; j++)
+			for (int j = 1; j < 4 + idex_for_bilding_y; j++)
 			{
-				if (coord_x == -2 || coord_y == -2 || coord_x == map_vector[0].length() - 3 || coord_y == map_vector.size() - 3
+				if (coord_x == -2 + idex_for_bilding_x || coord_y == -2 + idex_for_bilding_y 
+					|| coord_x == map_vector[0].length() - 3 - idex_for_bilding_y || coord_y == map_vector.size() - 3 - idex_for_bilding_x
 					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '-'
 					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '1'
 					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '2'
 					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '3'
 					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '4'
+					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '5'
 					|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == 'w')
 				{
 					can_buld = false;
@@ -291,6 +304,9 @@ int Map::Chose_bild(sf::RenderWindow& window)
 					if (event.mouseButton.x >= 416 && event.mouseButton.y >= 452
 						&& event.mouseButton.x <= 807 && event.mouseButton.y <= 496)
 						chose_number = 4;
+					if (event.mouseButton.x >= 417 && event.mouseButton.y >= 536
+						&& event.mouseButton.x <= 808 && event.mouseButton.y <= 580)
+						chose_number = 5;
 				}
 			}
 		}

@@ -1,5 +1,5 @@
-#pragma once
 #include "Bilding.h"
+
 class Kitchen : public Bilding
 {
 protected:

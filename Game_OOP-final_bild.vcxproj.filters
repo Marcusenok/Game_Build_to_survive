@@ -39,6 +39,9 @@
     <ClInclude Include="Kitchen.h">
       <Filter>Bildings</Filter>
     </ClInclude>
+    <ClInclude Include="Hospital.h">
+      <Filter>Bildings</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Manager.cpp">
@@ -69,6 +72,9 @@
       <Filter>Bildings</Filter>
     </ClCompile>
     <ClCompile Include="Kitchen.cpp">
+      <Filter>Bildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Hospital.cpp">
       <Filter>Bildings</Filter>
     </ClCompile>
   </ItemGroup>

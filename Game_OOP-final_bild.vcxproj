@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bilding.h" />
+    <ClInclude Include="Hospital.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="HuntersHouse.h" />
     <ClInclude Include="Kitchen.h" />
@@ -144,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bilding.cpp" />
+    <ClCompile Include="Hospital.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="HuntersHouse.cpp" />
     <ClCompile Include="Kitchen.cpp" />
