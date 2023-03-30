@@ -13,7 +13,7 @@ int main()
 	clock.restart();
 	float timer = 24;
 	int days = 1;
-	bool get_resorse = true;
+	int get_resorse = 0;
 
 	while (window.isOpen())
 	{
@@ -21,12 +21,14 @@ int main()
 		if (int(timer) / 24 > days) 
 		{
 			days += 1;
-			get_resorse = true;
+			get_resorse = 0;
 		}
-		if (int(timer) % 24 == 12 || int(timer) % 24 == 16 
-			|| int(timer) % 24 == 20 || get_resorse)
+		if (int(timer) % 24 == 12 && get_resorse == 0 
+			|| int(timer) % 24 == 16 && get_resorse == 1
+			|| int(timer) % 24 == 20 && get_resorse == 2)
 		{
 			RES_MGR->ResourceExtraction();
+			get_resorse = get_resorse + 1;
 		}
 		sf::Event event;
 		while (window.pollEvent(event))

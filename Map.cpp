@@ -104,6 +104,8 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 {
 	int number_buld = this->Chose_bild(window);
 
+	cout << number_buld;
+
 	Texture map;//текстура карты
 	map.loadFromFile("image/map.png");//заряжаем текстуру картинкой
 	Sprite s_map;//создаём спрайт для карты
@@ -137,7 +139,7 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 							{
 								MSG* msg = new MSG;
 								msg->type = MsgType::Create;
-								House* a = new House({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 3, 4, 5);
+								House* a = new House({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1, 4, 5);
 								msg->create.new_object = a;
 								instance->MGR->SendMsg(msg);
 								create_new_bild = false;
@@ -149,7 +151,20 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 								{
 									MSG* msg = new MSG;
 									msg->type = MsgType::Create;
-									Sawmill* a = new Sawmill({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 3, 4);
+									Sawmill* a = new Sawmill({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1, 4);
+									msg->create.new_object = a;
+									instance->MGR->SendMsg(msg);
+									create_new_bild = false;
+								}
+								break;
+							}
+							case 3:
+							{
+								if (Can_buld_sawmill(coord_x, coord_y))
+								{
+									MSG* msg = new MSG;
+									msg->type = MsgType::Create;
+									HuntersHouse* a = new HuntersHouse({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1, 4);
 									msg->create.new_object = a;
 									instance->MGR->SendMsg(msg);
 									create_new_bild = false;
@@ -234,13 +249,17 @@ int Map::Chose_bild(sf::RenderWindow& window)
 			{
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
+					cout << sf::Mouse::getPosition(window).x << endl;
+					cout << sf::Mouse::getPosition(window).y << endl;
 					if (event.mouseButton.x >= 406 && event.mouseButton.y >= 208
 						&& event.mouseButton.x <= 794 && event.mouseButton.y <= 249)
 						chose_number = 1;
 					if (event.mouseButton.x >= 404 && event.mouseButton.y >= 288
 						&& event.mouseButton.x <= 794 && event.mouseButton.y <= 331)
 						chose_number = 2;
-
+					if (event.mouseButton.x >= 414 && event.mouseButton.y >= 369
+						&& event.mouseButton.x <= 806 && event.mouseButton.y <= 414)
+						chose_number = 3;
 				}
 			}
 		}

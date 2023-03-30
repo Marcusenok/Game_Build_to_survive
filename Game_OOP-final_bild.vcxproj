@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClInclude Include="Bilding.h" />
     <ClInclude Include="House.h" />
+    <ClInclude Include="HuntersHouse.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MSG.h" />
@@ -143,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="Bilding.cpp" />
     <ClCompile Include="House.cpp" />
+    <ClCompile Include="HuntersHouse.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MSG.cpp" />
