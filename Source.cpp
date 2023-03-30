@@ -1,6 +1,5 @@
 #include"Map.h"
 
-
 int main()
 {
 	RenderWindow window(sf::VideoMode(1216, 928), "BUILD TO SURVIVE");
@@ -14,12 +13,21 @@ int main()
 	clock.restart();
 	float timer = 24;
 	int days = 1;
+	bool get_resorse = true;
 
 	while (window.isOpen())
 	{
 		timer += clock.restart().asSeconds();
-		if (int(timer) / 24 > days) days += 1;
-		cout << days << "--" << int(timer) % 24 << endl;
+		if (int(timer) / 24 > days) 
+		{
+			days += 1;
+			get_resorse = true;
+		}
+		if (int(timer) % 24 == 12 || int(timer) % 24 == 16 
+			|| int(timer) % 24 == 20 || get_resorse)
+		{
+			RES_MGR->ResourceExtraction();
+		}
 		sf::Event event;
 		while (window.pollEvent(event))
 		{

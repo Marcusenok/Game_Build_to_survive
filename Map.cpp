@@ -58,14 +58,14 @@ void Map::DrawMap(sf::RenderWindow& window, int days, float timer)
 	Texture* resourse_info = RES_MGR->LoadTexture("image/interface/resourse_info.png", { 0, 0, 600, 55 });
 	Sprite* s_resourse_info = RES_MGR->GetSprite(resourse_info, 306, 0);
 
-	Text time_status_days = RES_MGR->setString(0, 5, "");
+	Text time_status_days = RES_MGR->GetText(0, 5, "", 30);
 	time_status_days.setString(L"Δενό "+to_string(days));
-	Text time_status_hours = RES_MGR->setString(0, 30, "");
+	Text time_status_hours = RES_MGR->GetText(0, 30, "", 30);
 	time_status_hours.setString(L"Βπεμÿ "+to_string(int(timer) % 24));
-	Text info_wood = RES_MGR->setString(387, 5, to_string(RES_MGR->wood));
-	Text raw_food = RES_MGR->setString(519, 5, to_string(RES_MGR->raw_food));
-	Text fresh_food = RES_MGR->setString(668, 5, to_string(RES_MGR->fresh_food));
-	Text people = RES_MGR->setString(799, 5, to_string(RES_MGR->people));
+	Text info_wood = RES_MGR->GetText(387, 5, to_string(RES_MGR->GetWood()), 25);
+	Text raw_food = RES_MGR->GetText(519, 5, to_string(RES_MGR->GetRaw_food()), 25);
+	Text fresh_food = RES_MGR->GetText(668, 5, to_string(RES_MGR->GetFresh_food()), 25);
+	Text people = RES_MGR->GetText(799, 5, to_string(RES_MGR->GetPeople()), 25);
 
 	for (int i = 0; i < map_vector.size(); i++)
 	{
