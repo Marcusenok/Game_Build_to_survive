@@ -20,6 +20,8 @@ private:
 public:
 	static Map* GetInstance();
 	void DrawMap(sf::RenderWindow& window, int days, float timer);
+	void DrawMenu(sf::RenderWindow& window);
+	void Pause(sf::RenderWindow& window);
 	void Create_new_bilding(sf::RenderWindow& window, int days, float timer);
 	int Chose_bild(sf::RenderWindow& window);
 	bool Can_buld_sawmill(int x, int y);

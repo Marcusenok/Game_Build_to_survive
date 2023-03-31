@@ -14,14 +14,18 @@ int main()
 	float timer = 24;
 	int days = 1;
 	int get_resorse = 0;
+	int count_spped = 1;
+
+	MAP->DrawMenu(window);
 
 	while (window.isOpen())
 	{
-		timer += clock.restart().asSeconds();
+		timer += clock.restart().asSeconds() * count_spped;
 		if (int(timer) / 24 > days) 
 		{
 			days += 1;
 			get_resorse = 0;
+			RES_MGR->Update_moral_spirit();
 		}
 		if (int(timer) % 24 == 12 && get_resorse == 0 
 			|| int(timer) % 24 == 16 && get_resorse == 1
@@ -45,6 +49,12 @@ int main()
 			{
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
+					if (event.mouseButton.x >= 1024 && event.mouseButton.y >= 0
+						&& event.mouseButton.x <= 1088 && event.mouseButton.y <= 64 && count_spped != 1) count_spped -= 1;
+					if (event.mouseButton.x >= 1088 && event.mouseButton.y >= 0
+						&& event.mouseButton.x <= 1152 && event.mouseButton.y <= 64 && count_spped != 4) count_spped += 1;
+					if (event.mouseButton.x >= 960 && event.mouseButton.y >= 0
+						&& event.mouseButton.x <= 1024 && event.mouseButton.y <= 64) MAP->Pause(window);
 					cout << sf::Mouse::getPosition(window).x << endl;
 					cout << sf::Mouse::getPosition(window).y << endl;
 					if (event.mouseButton.x >= 1152 && event.mouseButton.y <= 64)
