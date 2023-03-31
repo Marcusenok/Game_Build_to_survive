@@ -10,13 +10,13 @@ int main()
 	Resource_manager* RES_MGR = Resource_manager::GetInstance();
 
 	Clock clock;
-	clock.restart();
 	float timer = 24;
 	int days = 1;
 	int get_resorse = 0;
 	int count_spped = 1;
 
 	MAP->DrawMenu(window);
+	clock.restart();
 
 	while (window.isOpen())
 	{

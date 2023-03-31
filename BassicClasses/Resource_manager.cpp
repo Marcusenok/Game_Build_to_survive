@@ -64,7 +64,7 @@ void Resource_manager::ResourceExtraction()
 
 void Resource_manager::Update_moral_spirit()
 {
-	moral_spirit += people * 0.05;
+	if (moral_spirit + (people * 0.05) > 100) moral_spirit = 100;
 	if (raw_food > 25 * count_Kitchen)
 	{
 		raw_food -= 25 * count_Kitchen;
@@ -74,37 +74,36 @@ void Resource_manager::Update_moral_spirit()
 	else { 
 		hungry_people = people - fresh_food;
 		fresh_food = 0;
-		if (moral_spirit - hungry_people * 0.2 < 0)moral_spirit = 0;
-		else moral_spirit -= hungry_people * 0.2;
+		if (moral_spirit - hungry_people * 0.25 < 0) moral_spirit = 0;
+		else moral_spirit -= hungry_people * 0.25;
 	}
-	if (moral_spirit - homeless_people * 0.1 < 0) moral_spirit = 0;
-	else moral_spirit -= homeless_people * 0.1;
-	moral_spirit += 10 * count_Hospital;
-	cout << moral_spirit;
+	if (moral_spirit - homeless_people * 0.2 < 0) moral_spirit = 0;
+	else moral_spirit -= homeless_people * 0.2;
+	if (moral_spirit + (10 * count_Hospital) > 100) moral_spirit = 100;
 }
 
 bool Resource_manager::CanBildHouse()
 {
-	if (wood > 25) return true; 
+	if (wood >= 25) return true; 
 	return false;
 }
 bool Resource_manager::CanBildSawmill() 
 {
-	if (wood > 20) return true;
+	if (wood >= 20) return true;
 	return false;
 }
 bool Resource_manager::CanBildHunterHouse() 
 {
-	if (wood > 20) return true;
+	if (wood >= 20) return true;
 	return false;
 }
 bool Resource_manager::CanBildKitchen() 
 {
-	if (wood > 60) return true;
+	if (wood >= 60) return true;
 	return false;
 }
 bool Resource_manager::CanBildHospital() 
 {
-	if (wood > 100) return true;
+	if (wood >= 100) return true;
 	return false;
 }
