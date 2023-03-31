@@ -132,29 +132,29 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bilding.h" />
-    <ClInclude Include="Hospital.h" />
-    <ClInclude Include="House.h" />
-    <ClInclude Include="HuntersHouse.h" />
-    <ClInclude Include="Kitchen.h" />
-    <ClInclude Include="Manager.h" />
-    <ClInclude Include="Map.h" />
-    <ClInclude Include="MSG.h" />
-    <ClInclude Include="Resource_manager.h" />
-    <ClInclude Include="Sawmill.h" />
+    <ClCompile Include="BassicClasses\Manager.cpp" />
+    <ClCompile Include="BassicClasses\Map.cpp" />
+    <ClCompile Include="BassicClasses\MSG.cpp" />
+    <ClCompile Include="BassicClasses\Resource_manager.cpp" />
+    <ClCompile Include="Bildins\Bilding.cpp" />
+    <ClCompile Include="Bildins\Hospital.cpp" />
+    <ClCompile Include="Bildins\House.cpp" />
+    <ClCompile Include="Bildins\HuntersHouse.cpp" />
+    <ClCompile Include="Bildins\Kitchen.cpp" />
+    <ClCompile Include="Bildins\Sawmill.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bilding.cpp" />
-    <ClCompile Include="Hospital.cpp" />
-    <ClCompile Include="House.cpp" />
-    <ClCompile Include="HuntersHouse.cpp" />
-    <ClCompile Include="Kitchen.cpp" />
-    <ClCompile Include="Manager.cpp" />
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="MSG.cpp" />
-    <ClCompile Include="Resource_manager.cpp" />
-    <ClCompile Include="Sawmill.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClInclude Include="BassicClasses\Manager.h" />
+    <ClInclude Include="BassicClasses\Map.h" />
+    <ClInclude Include="BassicClasses\MSG.h" />
+    <ClInclude Include="BassicClasses\Resource_manager.h" />
+    <ClInclude Include="Bildins\Bilding.h" />
+    <ClInclude Include="Bildins\Hospital.h" />
+    <ClInclude Include="Bildins\House.h" />
+    <ClInclude Include="Bildins\HuntersHouse.h" />
+    <ClInclude Include="Bildins\Kitchen.h" />
+    <ClInclude Include="Bildins\Sawmill.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -11,7 +11,7 @@ Map* Map::GetInstance()
 		instance->RES_MGR = Resource_manager::GetInstance();
 		string line;
 		vector <string> _map_vector;
-		ifstream file("map.txt");
+		ifstream file("./MapAndSave/map.txt");
 
 		while (getline(file, line)) {
 			_map_vector.push_back(line);

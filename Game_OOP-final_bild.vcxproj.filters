@@ -12,70 +12,70 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bilding.h">
+    <ClCompile Include="Bildins\Kitchen.cpp">
       <Filter>Bildings</Filter>
-    </ClInclude>
-    <ClInclude Include="House.h">
-      <Filter>Bildings</Filter>
-    </ClInclude>
-    <ClInclude Include="Manager.h">
-      <Filter>Basic Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="MSG.h">
-      <Filter>Basic Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Sawmill.h">
-      <Filter>Bildings</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Basic Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource_manager.h">
-      <Filter>Basic Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="HuntersHouse.h">
-      <Filter>Bildings</Filter>
-    </ClInclude>
-    <ClInclude Include="Kitchen.h">
-      <Filter>Bildings</Filter>
-    </ClInclude>
-    <ClInclude Include="Hospital.h">
-      <Filter>Bildings</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Manager.cpp">
-      <Filter>Basic Classes</Filter>
     </ClCompile>
-    <ClCompile Include="MSG.cpp">
-      <Filter>Basic Classes</Filter>
+    <ClCompile Include="Bildins\Sawmill.cpp">
+      <Filter>Bildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Bildins\Bilding.cpp">
+      <Filter>Bildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Bildins\Hospital.cpp">
+      <Filter>Bildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Bildins\House.cpp">
+      <Filter>Bildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Bildins\HuntersHouse.cpp">
+      <Filter>Bildings</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp">
       <Filter>Basic Classes</Filter>
     </ClCompile>
-    <ClCompile Include="House.cpp">
-      <Filter>Bildings</Filter>
-    </ClCompile>
-    <ClCompile Include="Bilding.cpp">
-      <Filter>Bildings</Filter>
-    </ClCompile>
-    <ClCompile Include="Sawmill.cpp">
-      <Filter>Bildings</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
+    <ClCompile Include="BassicClasses\Resource_manager.cpp">
       <Filter>Basic Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Resource_manager.cpp">
+    <ClCompile Include="BassicClasses\Manager.cpp">
       <Filter>Basic Classes</Filter>
     </ClCompile>
-    <ClCompile Include="HuntersHouse.cpp">
-      <Filter>Bildings</Filter>
+    <ClCompile Include="BassicClasses\Map.cpp">
+      <Filter>Basic Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Kitchen.cpp">
-      <Filter>Bildings</Filter>
+    <ClCompile Include="BassicClasses\MSG.cpp">
+      <Filter>Basic Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Hospital.cpp">
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Bildins\Kitchen.h">
       <Filter>Bildings</Filter>
-    </ClCompile>
+    </ClInclude>
+    <ClInclude Include="Bildins\Sawmill.h">
+      <Filter>Bildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Bildins\Bilding.h">
+      <Filter>Bildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Bildins\Hospital.h">
+      <Filter>Bildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Bildins\House.h">
+      <Filter>Bildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Bildins\HuntersHouse.h">
+      <Filter>Bildings</Filter>
+    </ClInclude>
+    <ClInclude Include="BassicClasses\MSG.h">
+      <Filter>Basic Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="BassicClasses\Resource_manager.h">
+      <Filter>Basic Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="BassicClasses\Manager.h">
+      <Filter>Basic Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="BassicClasses\Map.h">
+      <Filter>Basic Classes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

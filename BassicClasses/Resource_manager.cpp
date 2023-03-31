@@ -15,7 +15,7 @@ Resource_manager* Resource_manager::GetInstance()
 
 sf::Text Resource_manager::GetText(int x, int y, string text, int text_size)
 {
-	FONT.loadFromFile("ofont.ru_Arial Cyr.ttf");
+	FONT.loadFromFile("./Font/ofont.ru_Arial Cyr.ttf");
 	Text _text(text, FONT, text_size);
 	_text.setFillColor(Color::White);
 	_text.setPosition(x, y);

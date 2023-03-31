@@ -1,5 +1,5 @@
 #include"MSG.h"
-#include"Bilding.h"
+#include"../Bildins/Bilding.h"
 #include<list>
 
 class Manager
