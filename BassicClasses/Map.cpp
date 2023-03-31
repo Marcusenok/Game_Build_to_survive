@@ -57,6 +57,14 @@ Map* Map::GetInstance()
 					msg->create.new_object = a;
 					instance->MGR->SendMsg(msg);
 				}
+				if (_map_vector[i][j] == '5')
+				{
+					MSG* msg = new MSG;
+					msg->type = MsgType::Create;
+					Hospital* a = new Hospital({ j * 32, i * 32 }, 1);
+					msg->create.new_object = a;
+					instance->MGR->SendMsg(msg);
+				}
 			}
 		}
 	}
