@@ -16,13 +16,17 @@ private:
 	std::vector<string> map_vector;
 	Manager* MGR = nullptr;
 	Resource_manager* RES_MGR = nullptr;
+	int _timer = 0;
 
 public:
 	static Map* GetInstance();
+	void SetMap(const char* filename);
 	void DrawMap(sf::RenderWindow& window, int days, float timer);
 	void DrawMenu(sf::RenderWindow& window);
-	void Pause(sf::RenderWindow& window);
+	void Pause(sf::RenderWindow& window, int days,int timer);
 	void Create_new_bilding(sf::RenderWindow& window, int days, float timer);
 	int Chose_bild(sf::RenderWindow& window);
 	bool Can_buld_sawmill(int x, int y);
+	void SetTime(int _timer);
+	int GetTime();
 };

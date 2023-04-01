@@ -4,71 +4,79 @@ Map* Map::instance = nullptr;
 
 Map* Map::GetInstance()
 {
-	if (!instance) 
+	if (!instance)
 	{
 		instance = new Map();
 		instance->MGR = Manager::GetInstance();
 		instance->RES_MGR = Resource_manager::GetInstance();
-		string line;
-		vector <string> _map_vector;
-		ifstream file("./MapAndSave/map.txt");
+	}
+	return instance;
+}
 
-		while (getline(file, line)) {
-			_map_vector.push_back(line);
-		}
+void Map::SetMap(const char* filename)
+{
+	string line;
+	vector <string> _map_vector;
+	ifstream file(filename);
 
-		instance->map_vector = _map_vector;
-		
-		MSG* msg = new MSG;
+	while (getline(file, line)) {
+		_map_vector.push_back(line);
+	}
+	instance->map_vector = _map_vector;
 
-		for (int i = 0; i < _map_vector.size(); i++)
+	MSG* msg = new MSG;
+
+	for (int i = 0; i < map_vector.size() - 4; i++)
+	{
+		for (int j = 0; j < map_vector[0].length(); j++)
 		{
-			for (int j = 0; j < _map_vector[0].length(); j++)
+			if (map_vector[i][j] == '1')
 			{
-				if (_map_vector[i][j] == '1')
-				{
-					msg = new MSG;
-					msg->type = MsgType::Create;
-					House* a = new House({ j * 32, i * 32 }, 1, 5);
-					msg->create.new_object = a;
-					instance->MGR->SendMsg(msg);
-				}
-				if (_map_vector[i][j] == '2')
-				{
-					msg = new MSG;
-					msg->type = MsgType::Create;
-					Sawmill* a = new Sawmill({ j * 32, i * 32 }, 1);
-					msg->create.new_object = a;
-					instance->MGR->SendMsg(msg);
-				}
-				if (_map_vector[i][j] == '3')
-				{
-					MSG* msg = new MSG;
-					msg->type = MsgType::Create;
-					HuntersHouse* a = new HuntersHouse({ j * 32, i * 32 }, 1);
-					msg->create.new_object = a;
-					instance->MGR->SendMsg(msg);
-				}
-				if (_map_vector[i][j] == '4')
-				{
-					MSG* msg = new MSG;
-					msg->type = MsgType::Create;
-					Kitchen* a = new Kitchen({ j * 32, i * 32 }, 1);
-					msg->create.new_object = a;
-					instance->MGR->SendMsg(msg);
-				}
-				if (_map_vector[i][j] == '5')
-				{
-					MSG* msg = new MSG;
-					msg->type = MsgType::Create;
-					Hospital* a = new Hospital({ j * 32, i * 32 }, 1);
-					msg->create.new_object = a;
-					instance->MGR->SendMsg(msg);
-				}
+				RES_MGR->SetHomeless_people(RES_MGR->GetHomeless_people() - 5);
+				msg = new MSG;
+				msg->type = MsgType::Create;
+				House* a = new House({ j * 32, i * 32 }, 1, 5);
+				msg->create.new_object = a;
+				instance->MGR->SendMsg(msg);
+			}
+			if (map_vector[i][j] == '2')
+			{
+				RES_MGR->SetCountSawmill(1);
+				msg = new MSG;
+				msg->type = MsgType::Create;
+				Sawmill* a = new Sawmill({ j * 32, i * 32 }, 1);
+				msg->create.new_object = a;
+				instance->MGR->SendMsg(msg);
+			}
+			if (map_vector[i][j] == '3')
+			{
+				RES_MGR->SetCount_HunterHouse(1);
+				MSG* msg = new MSG;
+				msg->type = MsgType::Create;
+				HuntersHouse* a = new HuntersHouse({ j * 32, i * 32 }, 1);
+				msg->create.new_object = a;
+				instance->MGR->SendMsg(msg);
+			}
+			if (map_vector[i][j] == '4')
+			{
+				RES_MGR->SetCount_Kitchen(1);
+				MSG* msg = new MSG;
+				msg->type = MsgType::Create;
+				Kitchen* a = new Kitchen({ j * 32, i * 32 }, 1);
+				msg->create.new_object = a;
+				instance->MGR->SendMsg(msg);
+			}
+			if (map_vector[i][j] == '5')
+			{
+				RES_MGR->SetCount_Hospital(1);
+				MSG* msg = new MSG;
+				msg->type = MsgType::Create;
+				Hospital* a = new Hospital({ j * 32, i * 32 }, 1);
+				msg->create.new_object = a;
+				instance->MGR->SendMsg(msg);
 			}
 		}
 	}
-	return instance;
 }
 
 void Map::DrawMap(sf::RenderWindow& window, int days, float timer)
@@ -153,6 +161,19 @@ void Map::DrawMap(sf::RenderWindow& window, int days, float timer)
 	delete info_about_people;
 }
 
+void Map::SetTime(int timer)
+{
+	if (timer != 24)
+	{
+		_timer = timer;
+	}
+}
+
+int Map::GetTime()
+{
+	return _timer;
+}
+
 void Map::DrawMenu(sf::RenderWindow& window)
 {
 	bool in_menu = true;
@@ -174,9 +195,28 @@ void Map::DrawMenu(sf::RenderWindow& window)
 					cout << sf::Mouse::getPosition(window).x << " ";
 					cout << sf::Mouse::getPosition(window).y << endl;
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 226
-						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 303) in_menu = false;
+						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 303) 
+					{
+						SetMap("./MapAndSave/map_save.txt"); 
+						in_menu = false;
+						string line_resourse;
+						vector <string> resourse_vector;
+						ifstream file1("./MapAndSave/save_resourse.txt");
+
+						while (getline(file1, line_resourse)) {
+							resourse_vector.push_back(line_resourse);
+						}
+
+						RES_MGR->SetWood(stoi(resourse_vector[0]));
+						RES_MGR->SetRaw_food(stoi(resourse_vector[1]));
+						RES_MGR->SetFresh_food(stoi(resourse_vector[2]));
+						RES_MGR->SetMoral_spirit(stoi(resourse_vector[3]));
+						int	_timer = 24;
+						_timer = stoi(resourse_vector[4]);
+						SetTime(_timer);
+					}
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 329
-						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 404) in_menu = false;
+						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 404) {SetMap("./MapAndSave/map.txt"); in_menu = false;}
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 430
 						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 506) in_menu = false;
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 533
@@ -192,7 +232,7 @@ void Map::DrawMenu(sf::RenderWindow& window)
 	delete menu;
 }
 
-void Map::Pause(sf::RenderWindow& window)
+void Map::Pause(sf::RenderWindow& window, int days, int timer)
 {
 	bool in_pause = true;
 	Texture* menu_pause = RES_MGR->LoadTexture("image/interface/menu_pause.png", { 0, 0, 1216, 928 });
@@ -210,6 +250,27 @@ void Map::Pause(sf::RenderWindow& window)
 			{
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
+					if (event.mouseButton.x >= 422 && event.mouseButton.y >= 541
+						&& event.mouseButton.x <= 812 && event.mouseButton.y <= 587)
+					{
+						std::ofstream out_map;
+						out_map.open("./MapAndSave/map_save.txt");
+						for (int i = 0; i < map_vector.size(); i++)
+						{
+							out_map << map_vector[i] << endl;
+						}
+						out_map.close();
+
+						std::ofstream out_resourse;
+						out_resourse.open("./MapAndSave/save_resourse.txt");
+						out_resourse << RES_MGR->GetWood() << endl;
+						out_resourse << RES_MGR->GetRaw_food() << endl;
+						out_resourse << RES_MGR->GetFresh_food() << endl;
+						out_resourse << RES_MGR->GetMoral_spirit() << endl;
+						out_resourse << timer;
+						out_resourse.close();
+						exit(0);
+					}
 					in_pause = false;
 				}
 			}

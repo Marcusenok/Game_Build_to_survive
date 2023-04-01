@@ -9,13 +9,15 @@ int main()
 	Map* MAP = Map::GetInstance();
 	Resource_manager* RES_MGR = Resource_manager::GetInstance();
 
-	Clock clock;
+	MAP->DrawMenu(window);
+	
 	float timer = 24;
-	int days = 1;
+	timer = MAP->GetTime();
+	int days = timer / 24;
 	int get_resorse = 0;
 	int count_spped = 1;
-
-	MAP->DrawMenu(window);
+	
+	Clock clock;
 	clock.restart();
 
 	while (window.isOpen())
@@ -54,7 +56,7 @@ int main()
 					if (event.mouseButton.x >= 1088 && event.mouseButton.y >= 0
 						&& event.mouseButton.x <= 1152 && event.mouseButton.y <= 64 && count_spped != 4) count_spped += 1;
 					if (event.mouseButton.x >= 960 && event.mouseButton.y >= 0
-						&& event.mouseButton.x <= 1024 && event.mouseButton.y <= 64) MAP->Pause(window);
+						&& event.mouseButton.x <= 1024 && event.mouseButton.y <= 64) MAP->Pause(window, days, timer);
 					cout << sf::Mouse::getPosition(window).x << endl;
 					cout << sf::Mouse::getPosition(window).y << endl;
 					if (event.mouseButton.x >= 1152 && event.mouseButton.y <= 64)

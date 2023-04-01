@@ -16,11 +16,11 @@ private:
 	int fresh_food = 0;
 	int people = 100;
 	int moral_spirit = 50;
-	int count_Sawmill = 1;
-	int count_HunterHouse = 1;
-	int count_Kitchen = 1;
+	int count_Sawmill = 0;
+	int count_HunterHouse = 0;
+	int count_Kitchen = 0;
 	int count_Hospital = 0;
-	int homeless_people = 85;
+	int homeless_people = 100;
 	int hungry_people = 0;
 
 public:
