@@ -64,7 +64,8 @@ void Resource_manager::ResourceExtraction()
 
 void Resource_manager::Update_moral_spirit()
 {
-	if (moral_spirit + (people * 0.05) > 100) moral_spirit = 100;
+	if (moral_spirit + (people * 0.1) > 100) moral_spirit = 100;
+	else moral_spirit = moral_spirit + (people * 0.1);
 	if (raw_food > 25 * count_Kitchen)
 	{
 		raw_food -= 25 * count_Kitchen;
@@ -80,6 +81,7 @@ void Resource_manager::Update_moral_spirit()
 	if (moral_spirit - homeless_people * 0.2 < 0) moral_spirit = 0;
 	else moral_spirit -= homeless_people * 0.2;
 	if (moral_spirit + (10 * count_Hospital) > 100) moral_spirit = 100;
+	else moral_spirit + (10 * count_Hospital);
 }
 
 bool Resource_manager::CanBildHouse()

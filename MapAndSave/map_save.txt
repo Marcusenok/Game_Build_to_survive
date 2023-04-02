@@ -1,8 +1,8 @@
 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-wwww000ww00000ww2--3--w0000wwwwwwwwwww
-00w0000000000000------0000000000wwwwww
-0000000000000000------0000000000000www
+wwww2--ww002--ww2--3--w3--0wwwwwwwwwww
+00w0---0000---00------0---000000wwwwww
+0000---0000---00------0---000000000www
 000000001--1--00000000000000000000000w
 000001--------00000001--00000000000000
 00000---------0000000---00000000000000
