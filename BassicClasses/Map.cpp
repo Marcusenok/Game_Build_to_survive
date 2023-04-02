@@ -321,6 +321,11 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 								MSG* msg = new MSG;
 								msg->type = MsgType::Create;
 								House* a = new House({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1, 5);
+								map_vector[coord_y + 1][coord_x + 1] = *"1";
+								for (int i = 0; i <= 2; i++)
+								{
+									for(int j = 0; j <= 2; j++) if (map_vector[coord_y + 1 + i][coord_x + 1 + j] != *"1") map_vector[coord_y + 1 + i][coord_x + 1 + j] = *"-";
+								}
 								msg->create.new_object = a;
 								instance->MGR->SendMsg(msg);
 								create_new_bild = false;
@@ -335,6 +340,11 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 									MSG* msg = new MSG;
 									msg->type = MsgType::Create;
 									Sawmill* a = new Sawmill({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1);
+									map_vector[coord_y + 1][coord_x + 1] = *"2";
+									for (int i = 0; i <= 2; i++)
+									{
+										for (int j = 0; j <= 2; j++) if (map_vector[coord_y + 1 + i][coord_x + 1 + j] != *"2") map_vector[coord_y + 1 + i][coord_x + 1 + j] = *"-";
+									}
 									msg->create.new_object = a;
 									instance->MGR->SendMsg(msg);
 									create_new_bild = false;
@@ -349,6 +359,11 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 									RES_MGR->SetCount_HunterHouse(1);
 									MSG* msg = new MSG;
 									msg->type = MsgType::Create;
+									map_vector[coord_y + 1][coord_x + 1] = *"3";
+									for (int i = 0; i <= 2; i++)
+									{
+										for (int j = 0; j <= 2; j++) if (map_vector[coord_y + 1 + i][coord_x + 1 + j] != *"3") map_vector[coord_y + 1 + i][coord_x + 1 + j] = *"-";
+									}
 									HuntersHouse* a = new HuntersHouse({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1);
 									msg->create.new_object = a;
 									instance->MGR->SendMsg(msg);
@@ -364,6 +379,11 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 								MSG* msg = new MSG;
 								msg->type = MsgType::Create;
 								Kitchen* a = new Kitchen({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1);
+								map_vector[coord_y + 1][coord_x + 1] = *"4";
+								for (int i = 0; i <= 3; i++)
+								{
+									for (int j = 0; j <= 3; j++) if (map_vector[coord_y + 1 + i][coord_x + 1 + j] != *"4") map_vector[coord_y + 1 + i][coord_x + 1 + j] = *"-";
+								}
 								msg->create.new_object = a;
 								instance->MGR->SendMsg(msg);
 								create_new_bild = false;
@@ -376,6 +396,11 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 								MSG* msg = new MSG;
 								msg->type = MsgType::Create;
 								Hospital* a = new Hospital({ (coord_x + 1) * 32, (coord_y + 1) * 32 }, 1);
+								map_vector[coord_y + 1][coord_x + 1] = *"5";
+								for (int i = 0; i <= 3; i++)
+								{
+									for (int j = 0; j <= 4; j++) if (map_vector[coord_y + 1 + i][coord_x + 1 + j] != *"5") map_vector[coord_y + 1 + i][coord_x + 1 + j] = *"-";
+								}
 								msg->create.new_object = a;
 								instance->MGR->SendMsg(msg);
 								create_new_bild = false;
