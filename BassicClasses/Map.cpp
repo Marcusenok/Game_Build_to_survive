@@ -247,7 +247,30 @@ void Map::DrawMenu(sf::RenderWindow& window)
 						delete tutorial;
 					}
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 533
-						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 607) in_menu = false;
+						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 607) 
+					{
+						Texture* aboute_me = RES_MGR->LoadTexture("image/interface/aboute_me.png", { 0, 0, 1216, 928 });
+						Sprite* s_aboute_me = RES_MGR->GetSprite(aboute_me, 0, 0);
+						bool in_aboute_me = true;
+						while (in_aboute_me)
+						{
+							sf::Event event;
+							while (window.pollEvent(event))
+							{
+								if (event.type == sf::Event::Closed)
+								{
+									window.close();
+								}
+								if (event.type == sf::Event::MouseButtonPressed)
+								{
+									if (event.mouseButton.button == sf::Mouse::Left) in_aboute_me = false;
+								}
+							}
+							window.draw(*s_aboute_me);
+							window.display();
+						}
+						delete s_aboute_me;
+					}
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 633
 						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 708) exit(0);
 				}
