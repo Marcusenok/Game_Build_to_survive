@@ -36,6 +36,7 @@ int main()
 			RES_MGR->ResourceExtraction();
 			get_resorse = get_resorse + 1;
 		}
+		if (RES_MGR->GetMoral_spirit() == 0) MAP->EndGame(window);
 		sf::Event event;
 		while (window.pollEvent(event))
 		{

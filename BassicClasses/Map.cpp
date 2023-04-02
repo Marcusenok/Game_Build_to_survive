@@ -587,3 +587,27 @@ bool Map::Can_buld_sawmill(int x, int y)
 	}
 	return can_buld_sawmill;
 }
+
+void Map::EndGame(sf::RenderWindow& window)
+{
+	Texture* end_game = RES_MGR->LoadTexture("image/interface/game_over.png", { 0, 0, 1216, 928 });
+	Sprite* s_end_game = RES_MGR->GetSprite(end_game, 0, 0);
+	bool in_end_game = true;
+	while (in_end_game)
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				window.close();
+			}
+			if (event.type == sf::Event::MouseButtonPressed)
+			{
+				if (event.mouseButton.button == sf::Mouse::Left) exit(0);
+			}
+		}
+		window.draw(*s_end_game);
+		window.display();
+	}
+}

@@ -16,7 +16,7 @@ private:
 	std::vector<string> map_vector;
 	Manager* MGR = nullptr;
 	Resource_manager* RES_MGR = nullptr;
-	int _timer = 0;
+	int _timer = 24;
 
 public:
 	static Map* GetInstance();
@@ -29,4 +29,5 @@ public:
 	bool Can_buld_sawmill(int x, int y);
 	void SetTime(int _timer);
 	int GetTime();
+	void EndGame(sf::RenderWindow& window);
 };
