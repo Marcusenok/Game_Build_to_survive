@@ -218,7 +218,34 @@ void Map::DrawMenu(sf::RenderWindow& window)
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 329
 						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 404) {SetMap("./MapAndSave/map.txt"); in_menu = false;}
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 430
-						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 506) in_menu = false;
+						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 506) 
+					{
+						Texture* tutorial = RES_MGR->LoadTexture("image/interface/tutorial.png", { 0, 0, 1216, 928 });
+						Sprite* s_tutorial = RES_MGR->GetSprite(tutorial, 0, 0);
+						bool in_tutorial = true;
+						while (in_tutorial)
+						{
+							sf::Event event;
+							while (window.pollEvent(event))
+							{
+								if (event.type == sf::Event::Closed)
+								{
+									window.close();
+								}
+								if (event.type == sf::Event::MouseButtonPressed)
+								{
+									if (event.mouseButton.button == sf::Mouse::Left)
+									{
+										if (event.mouseButton.x >= 360 && event.mouseButton.y >= 852
+											&& event.mouseButton.x <= 881 && event.mouseButton.y <= 909) in_tutorial = false;
+									}
+								}
+							}
+							window.draw(*s_tutorial);
+							window.display();
+						}
+						delete tutorial;
+					}
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 533
 						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 607) in_menu = false;
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 633
