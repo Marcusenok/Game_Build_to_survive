@@ -468,15 +468,15 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 		this->DrawMap(window, days, timer);
 		MGR->DrawObjects(window);
 		int idex_for_bilding_x = 0, idex_for_bilding_y = 0;
-		if (number_buld == 4) { idex_for_bilding_x += 1; idex_for_bilding_y += 1; };
-		if (number_buld == 5) { idex_for_bilding_x += 2; idex_for_bilding_y += 1; };
+		if (number_buld == 4) { idex_for_bilding_y += 1; idex_for_bilding_x += 1; };
+		if (number_buld == 5) { idex_for_bilding_y += 2; idex_for_bilding_x += 1; };
 		can_buld = true;
 		if (number_buld != 0) {
-			for (int i = 1; i < 4 + idex_for_bilding_x; i++)
+			for (int i = 1; i < 4 + idex_for_bilding_y; i++)
 			{
-				for (int j = 1; j < 4 + idex_for_bilding_y; j++)
+				for (int j = 1; j < 4 + idex_for_bilding_x; j++)
 				{
-					if (coord_x == -2 || coord_y == -2 || coord_x == map_vector[0].length() - 3 || coord_y == map_vector.size() - 3
+					if (coord_x == -2 || coord_y == -2 || coord_x >= map_vector[0].length() - 3 - idex_for_bilding_y || coord_y >= map_vector.size() - 3 - idex_for_bilding_x * 2
 						|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '-'
 						|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '1'
 						|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '2'
@@ -492,7 +492,7 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 					{
 						s_map.setTextureRect(IntRect(32, 0, 32, 32));
 					}
-					s_map.setPosition((coord_x * 32 + (i * 32)), (coord_y * 32 + (j * 32)));
+					s_map.setPosition((coord_x * 32 + (	i * 32)), (coord_y * 32 + (j * 32)));
 					window.draw(s_map);
 				}
 			}
