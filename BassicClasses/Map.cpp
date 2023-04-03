@@ -476,7 +476,7 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 			{
 				for (int j = 1; j < 4 + idex_for_bilding_x; j++)
 				{
-					if (coord_x == -2 || coord_y == -2 || coord_x >= map_vector[0].length() - 3 - idex_for_bilding_y || coord_y >= map_vector.size() - 3 - idex_for_bilding_x * 2
+					if (coord_x == -2 || coord_y == -2 || coord_x >= map_vector[0].length() - 3 - idex_for_bilding_y || coord_y >= map_vector.size() - 3 - idex_for_bilding_x 
 						|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '-'
 						|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '1'
 						|| map_vector[(coord_y * 32 + (j * 32)) / 32][(coord_x * 32 + (i * 32)) / 32] == '2'
