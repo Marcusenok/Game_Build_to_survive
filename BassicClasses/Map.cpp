@@ -269,7 +269,7 @@ void Map::DrawMenu(sf::RenderWindow& window)
 							window.draw(*s_aboute_me);
 							window.display();
 						}
-						delete s_aboute_me;
+						delete aboute_me;
 					}
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 633
 						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 708) exit(0);
@@ -604,10 +604,11 @@ void Map::EndGame(sf::RenderWindow& window)
 			}
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
-				if (event.mouseButton.button == sf::Mouse::Left) exit(0);
+				if (event.mouseButton.button == sf::Mouse::Left) DrawMenu(window);
 			}
 		}
 		window.draw(*s_end_game);
 		window.display();
 	}
+	delete end_game;
 }
