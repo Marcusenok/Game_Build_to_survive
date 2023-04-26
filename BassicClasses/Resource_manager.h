@@ -11,16 +11,16 @@ class Resource_manager
 private:
 	static Resource_manager* instance;
 
-	int wood = 100;
+	int wood = 150;
 	int raw_food = 100;
-	int fresh_food = 0;
+	int fresh_food = 50;
 	int people = 100;
-	int moral_spirit = 1;
+	int moral_spirit = 75;
 	int count_Sawmill = 0;
 	int count_HunterHouse = 0;
 	int count_Kitchen = 0;
 	int count_Hospital = 0;
-	int homeless_people = 100;
+	int homeless_people = people;
 	int hungry_people = 0;
 
 public:

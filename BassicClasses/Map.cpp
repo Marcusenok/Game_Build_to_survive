@@ -216,7 +216,14 @@ void Map::DrawMenu(sf::RenderWindow& window)
 						SetTime(_timer);
 					}
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 329
-						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 404) {SetMap("./MapAndSave/map.txt"); in_menu = false;}
+						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 404) {
+						SetMap("./MapAndSave/map.txt");
+						RES_MGR->SetWood(150);
+						RES_MGR->SetRaw_food(100);
+						RES_MGR->SetFresh_food(50);
+						RES_MGR->SetMoral_spirit(75);
+						in_menu = false;
+					}
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 430
 						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 506) 
 					{
