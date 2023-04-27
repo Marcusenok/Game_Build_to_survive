@@ -218,10 +218,6 @@ void Map::DrawMenu(sf::RenderWindow& window)
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 329
 						&& event.mouseButton.x <= 855 && event.mouseButton.y <= 404) {
 						SetMap("./MapAndSave/map.txt");
-						RES_MGR->SetWood(150);
-						RES_MGR->SetRaw_food(100);
-						RES_MGR->SetFresh_food(50);
-						RES_MGR->SetMoral_spirit(75);
 						in_menu = false;
 					}
 					if (event.mouseButton.x >= 360 && event.mouseButton.y >= 430
@@ -505,7 +501,7 @@ void Map::Create_new_bilding(sf::RenderWindow& window, int days, float timer)
 			}
 		}
 
-		if (number_buld == 2)
+		if (number_buld == 2 or number_buld == 3)
 		{
 			if (Can_buld_sawmill(coord_x, coord_y) == false)
 			{
@@ -611,7 +607,7 @@ void Map::EndGame(sf::RenderWindow& window)
 			}
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
-				if (event.mouseButton.button == sf::Mouse::Left) DrawMenu(window);
+				if (event.mouseButton.button == sf::Mouse::Left) exit(0);;
 			}
 		}
 		window.draw(*s_end_game);

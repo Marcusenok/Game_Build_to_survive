@@ -12,10 +12,6 @@ private:
 	Manager();
 	Manager(const Manager&);
 	~Manager();
-	int wood = 300;
-	int raw_food = 200;
-	int fresh_food = 200;
-	int people = 100;
 
 public:
 	static Manager* GetInstance();
