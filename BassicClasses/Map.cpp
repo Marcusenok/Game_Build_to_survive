@@ -161,6 +161,33 @@ void Map::DrawMap(sf::RenderWindow& window, int days, float timer)
 	delete info_about_people;
 }
 
+void Map::DrawSickPeople(sf::RenderWindow& window)
+{
+	Texture* map = RES_MGR->LoadTexture("image/map.png", { 0, 0, 512 , 32 });
+	Sprite s_map = *RES_MGR->GetSprite(map, 0, 0);;
+
+	for (int i = 0; i < map_vector.size(); i++)
+	{
+		for (int j = 0; j < map_vector[0].length(); j++)
+		{
+			if (map_vector[i][j] == 's')
+			{
+				s_map.setTextureRect(IntRect(128, 0, 32, 32));
+				s_map.setPosition(j * 32, i * 32);
+				window.draw(s_map);
+			}
+			if (map_vector[i][j] == 'd')
+			{
+				s_map.setTextureRect(IntRect(128, 0, 32, 32));
+				s_map.setPosition(j * 32, i * 32);
+				window.draw(s_map);
+			}
+		}
+	}
+
+	delete map;
+}
+
 void Map::SetTime(int timer)
 {
 	if (timer != 24)
@@ -614,4 +641,56 @@ void Map::EndGame(sf::RenderWindow& window)
 		window.display();
 	}
 	delete end_game;
+}
+
+void Map::GetSickPeople()
+{
+	int number_house = (RES_MGR->GetPeople() - RES_MGR->GetHomeless_people()) / 5;
+	bool sick_people = false;
+	for (int i = 0; i < number_house; i++) {
+		int num = rand() % 100;
+		if (num <= 5)
+		{
+			sick_people = true;
+			break;
+		}
+	}
+	bool have_sick_people = false;
+	if (sick_people) {
+		for (int i = 0; i < map_vector.size() - 4; i++)
+		{
+			for (int j = 0; j < map_vector[0].length(); j++)
+			{
+				if (map_vector[i][j] == '1') 
+				{
+					if (map_vector[i + 1][j + 1] != 's' and !have_sick_people)
+					{
+						map_vector[i + 1][j + 1] = 's';
+						have_sick_people = true;
+					}
+				}
+			}
+		}
+	}
+}
+
+void Map::GetDeadPeople()
+{
+	for (int i = 0; i < map_vector.size(); i++)
+	{
+		for (int j = 0; j < map_vector[0].length(); j++)
+		{
+			if (map_vector[i][j] == 's')
+			{
+				map_vector[i][j] = '-';
+				RES_MGR->SetMoral_spirit(RES_MGR->GetMoral_spirit() - 5);
+				RES_MGR->ManDead();
+			} 
+		}
+	}
+}
+
+void Map::DeleteSickPeople(int x, int y)
+{
+	if(map_vector[y / 32][x / 32] == 's') map_vector[y / 32][x / 32] = '-';
 }

@@ -10,32 +10,45 @@ int main()
 	Resource_manager* RES_MGR = Resource_manager::GetInstance();
 
 	MAP->DrawMenu(window);
-	
+
 	float timer = 24;
 	timer = MAP->GetTime();
 	int days = timer / 24;
 	int get_resorse = 0;
+	int get_hill = 0;
+	int get_dead = 0;
 	int count_spped = 1;
-	
+
 	Clock clock;
 	clock.restart();
 
 	while (window.isOpen())
 	{
 		timer += clock.restart().asSeconds() * count_spped;
-		if (int(timer) / 24 > days) 
+		if (int(timer) / 24 > days)
 		{
 			days += 1;
 			get_resorse = 0;
+			get_hill = 0;
+			get_dead = 0;
 			RES_MGR->Update_moral_spirit();
 		}
-		if (int(timer) % 24 == 12 && get_resorse == 0 
+		if (int(timer) % 24 == 12 && get_resorse == 0
 			|| int(timer) % 24 == 16 && get_resorse == 1
 			|| int(timer) % 24 == 20 && get_resorse == 2)
 		{
 			RES_MGR->ResourceExtraction();
 			get_resorse = get_resorse + 1;
 		}
+		if (int(timer) % 24 == 0 && get_hill == 0 || int(timer) % 24 == 2 && get_hill == 1
+			|| int(timer) % 24 == 4 && get_hill == 2 || int(timer) % 24 == 8 && get_hill == 3
+			|| int(timer) % 24 == 12 && get_hill == 4 || int(timer) % 24 == 15 && get_hill == 5)
+		{
+			get_hill += 1;
+			MAP->GetSickPeople();
+		}
+		if (int(timer) % 23 == 22 && get_dead == 0) 
+		{ get_dead += 1; MAP->GetDeadPeople(); }
 		if (RES_MGR->GetMoral_spirit() == 0) MAP->EndGame(window);
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -58,12 +71,11 @@ int main()
 						&& event.mouseButton.x <= 1152 && event.mouseButton.y <= 64 && count_spped != 4) count_spped += 1;
 					if (event.mouseButton.x >= 960 && event.mouseButton.y >= 0
 						&& event.mouseButton.x <= 1024 && event.mouseButton.y <= 64) MAP->Pause(window, days, timer);
-					cout << sf::Mouse::getPosition(window).x << endl;
-					cout << sf::Mouse::getPosition(window).y << endl;
 					if (event.mouseButton.x >= 1152 && event.mouseButton.y <= 64)
 					{
 						MAP->Create_new_bilding(window, days, timer);
 					}
+					MAP->DeleteSickPeople(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
 				}
 			}
 		}
@@ -74,6 +86,8 @@ int main()
 
 		MAP->DrawMap(window, days, timer);
 		MGR->DrawObjects(window);
+		MAP->DrawSickPeople(window);
+
 		window.display();
 	}
 

@@ -51,5 +51,6 @@ public:
 	void SetCount_Kitchen(int _count_HunterKitchen);
 	void SetCount_Hospital(int _count_Hospital);
 	void Update_moral_spirit();
+	void ManDead();
 };
 

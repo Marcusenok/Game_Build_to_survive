@@ -84,6 +84,12 @@ void Resource_manager::Update_moral_spirit()
 	else moral_spirit + (10 * count_Hospital);
 }
 
+void Resource_manager::ManDead()
+{
+	people -= 1;
+	if (homeless_people > 1) homeless_people -= 1;
+}
+
 bool Resource_manager::CanBildHouse()
 {
 	if (wood >= 25) return true; 
