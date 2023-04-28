@@ -650,7 +650,7 @@ void Map::GetSickPeople()
 	bool sick_people = false;
 	for (int i = 0; i < number_house; i++) {
 		int num = rand() % 100;
-		if (num <= 5)
+		if (num <= 8)
 		{
 			sick_people = true;
 			number_house = i;
