@@ -16,7 +16,6 @@ int main()
 	int days = timer / 24;
 	int get_resorse = 0;
 	int get_hill = 0;
-	int get_dead = 0;
 	int count_spped = 1;
 
 	Clock clock;
@@ -30,8 +29,8 @@ int main()
 			days += 1;
 			get_resorse = 0;
 			get_hill = 0;
-			get_dead = 0;
 			RES_MGR->Update_moral_spirit();
+			MAP->GetDeadPeople();
 		}
 		if (int(timer) % 24 == 12 && get_resorse == 0
 			|| int(timer) % 24 == 16 && get_resorse == 1
@@ -47,8 +46,6 @@ int main()
 			get_hill += 1;
 			MAP->GetSickPeople();
 		}
-		if (int(timer) % 23 == 22 && get_dead == 0) 
-		{ get_dead += 1; MAP->GetDeadPeople(); }
 		if (RES_MGR->GetMoral_spirit() == 0) MAP->EndGame(window);
 		sf::Event event;
 		while (window.pollEvent(event))

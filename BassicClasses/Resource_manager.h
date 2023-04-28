@@ -15,7 +15,7 @@ private:
 	int raw_food = 100;
 	int fresh_food = 50;
 	int people = 100;
-	int moral_spirit = 75;
+	int moral_spirit = 90;
 	int count_Sawmill = 0;
 	int count_HunterHouse = 0;
 	int count_Kitchen = 0;
