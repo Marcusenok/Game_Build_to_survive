@@ -652,9 +652,11 @@ void Map::GetSickPeople()
 		if (num <= 5)
 		{
 			sick_people = true;
+			number_house = i;
 			break;
 		}
 	}
+	int number_house_for_sick = -1;
 	bool have_sick_people = false;
 	if (sick_people) {
 		for (int i = 0; i < map_vector.size() - 4; i++)
@@ -663,7 +665,8 @@ void Map::GetSickPeople()
 			{
 				if (map_vector[i][j] == '1') 
 				{
-					if (map_vector[i + 1][j + 1] != 's' and !have_sick_people)
+					number_house_for_sick += 1;
+					if (map_vector[i + 1][j + 1] != 's' and !have_sick_people and number_house_for_sick == number_house)
 					{
 						map_vector[i + 1][j + 1] = 's';
 						have_sick_people = true;
