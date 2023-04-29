@@ -650,6 +650,7 @@ void Map::GetSickPeople()
 	bool sick_people = false;
 	for (int i = 0; i < number_house; i++) {
 		int num = rand() % 100;
+		if (RES_MGR->GetCount_Hospital() != 0) num = num / RES_MGR->GetCount_Hospital();
 		if (num <= 8)
 		{
 			sick_people = true;

@@ -40,6 +40,7 @@ public:
 	int GetHomeless_people();
 	int GetHungry_people();
 	int GetMoral_spirit();
+	int GetCount_Hospital();
 	void ResourceExtraction();
 	bool CanBildHouse();
 	bool CanBildSawmill();

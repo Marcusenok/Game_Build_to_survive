@@ -47,7 +47,8 @@ int Resource_manager::GetWood() { return wood; }
 int Resource_manager::GetRaw_food() { return raw_food; }
 int Resource_manager::GetFresh_food() { return fresh_food; }
 int Resource_manager::GetPeople() { return people; }
-int Resource_manager::GetMoral_spirit(){ return moral_spirit; };
+int Resource_manager::GetMoral_spirit(){ return moral_spirit; }
+int Resource_manager::GetCount_Hospital(){return count_Hospital;};
 int Resource_manager::GetHomeless_people() { return homeless_people; };
 int Resource_manager::GetHungry_people() { return hungry_people; };
 void Resource_manager::SetCountSawmill(int _count_Sawmill) { count_Sawmill += _count_Sawmill; }
